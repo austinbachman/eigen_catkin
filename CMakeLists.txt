@@ -19,6 +19,7 @@ set(USE_SYSTEM_EIGEN "AUTO" CACHE INTERNAL "Whether to use the system version of
 include(${CMAKE_CURRENT_SOURCE_DIR}/use-system-installation-of-eigen.cmake)
 
 # Check if the version is suitable, otherwise force downloading the newer one.
+set(USE_SYSTEM_EIGEN "OFF")
 if(USE_SYSTEM_EIGEN STREQUAL "AUTO")
   # We don't use the find_package version checks here because they fail on
   # Ubuntu 16.04, so we'll do it manually.
@@ -85,7 +86,7 @@ else()
   file(MAKE_DIRECTORY ${EIGEN_CATKIN_EIGEN_INCLUDE})
   ExternalProject_Add(eigen_src
     UPDATE_COMMAND ""
-    URL http://bitbucket.org/eigen/eigen/get/3.2.10.tar.bz2
+    URL http://bitbucket.org/eigen/eigen/get/3.3.3.tar.bz2
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=${CATKIN_DEVEL_PREFIX}  -DCMAKE_BUILD_TYPE:STRING=Release
   )
 
